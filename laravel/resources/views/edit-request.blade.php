@@ -10,45 +10,36 @@
                 <div class="card-header d-flex">
                     <h4 class="card-text mr-5">{{$HolidayRequests->firstName}}&nbsp;{{$HolidayRequests->lastName}}</h4>
                     <p class="ml-3 mr-3">Request number: #{{ $id }}</p>
-                    {{-- @can('update', $user->HolidayRequests) --}}
-                    <a class="float-right" href="/edit/{{ $HolidayRequests->id }}">Edit Request</a>
-                    {{-- @endcan --}}
+
                 </div>
 
-                <form action="/allRequests" enctype="multipart/form-data" method="POST">
+                <form action="/update/{{$id}}" method="POST">
                     @csrf
-                    @method('post')
-                    
+
+                    @if($errors->any())
+                        {{ implode('', $errors->all('<div>:message</div>')) }}
+                    @endif
+                   
                     <div class="card-body p-5 mx-auto">        
                         <div class="row m-5">
                             <h4 style="width:150px;">Email:</h4> 
-                            <textarea name="email">
-                                {{$HolidayRequests->email}}
-                            </textarea>
+                            <input name="email" value="{{$HolidayRequests->email}}">
                         </div>
                         <div class="row m-5 d-flex">
-                            <h4 style="width:150px;">Number:</h4> 
-                            <textarea name="phoneNumber">
-                                {{$HolidayRequests->phoneNumber}}
-                            </textarea>
+                            <h4 style="width:150px;">Phone Number:</h4> 
+                            <input name="phoneNumber" value="{{$HolidayRequests->phoneNumber}}">        
                         </div>
                         <div class="row m-5 d-flex">
                             <h4 style="width:150px;">Start Date:</h4>
-                            <textarea name="holidayStart">
-                                {{$HolidayRequests->holidayStart}}
-                            </textarea>
+                            <input name="holidayStart" value="{{$HolidayRequests->holidayStart}}">     
                         </div>
                         <div class="row m-5 d-flex">
                             <h4 style="width:150px;">End Date:</h4> 
-                            <textarea name="holidayEnd">
-                                {{$HolidayRequests->holidayEnd}}
-                            </textarea>
+                            <input name="holidayEnd" value="{{$HolidayRequests->holidayEnd}}">     
                         </div>
                         <div class="row m-5 d-flex">
                             <h4 style="width:150px;">Remark:</h4> 
-                            <textarea name="remark">
-                                {{$HolidayRequests->remark}}
-                            </textarea>
+                            <input name="remark" value="{{$HolidayRequests->remark}}">   
                         </div>
                     </div>
 

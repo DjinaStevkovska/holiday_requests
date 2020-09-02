@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\HolidayRequests;
+use Illuminate\Support\Facades\Auth;
 
 class HolidayRequestsController extends Controller
 {
@@ -14,7 +15,8 @@ class HolidayRequestsController extends Controller
 
     public function index()
     {
-        return view('/holidayRequest');
+        $user = Auth::user();
+        return view('/holiday-request', compact('user'));
     }
     public function store()
     {
@@ -38,7 +40,7 @@ class HolidayRequestsController extends Controller
             'remark'       => $data['remark']
         ]);
 
-        return redirect('/allRequests');
+        return redirect('/all-requests');
         // return(alert('request sent'));
         // need to represent the request
         // return redirect('/profile/' . auth()->user()->id);
@@ -50,7 +52,7 @@ class HolidayRequestsController extends Controller
         // $this->authorize('update', $HolidayRequests->HolidayRequests);
         $HolidayRequests=\App\HolidayRequests::find($id);
         // dd($HolidayRequests);
-        return view('singleRequest', compact('HolidayRequests', 'id'));
+        return view('edit-request', compact('HolidayRequests', 'id'));
 
     }
 
@@ -63,11 +65,82 @@ class HolidayRequestsController extends Controller
         // dd($user);
         // dd($user->HolidayRequests[0]->id);
     //  need to make auth for can update
-        return view('allRequests', compact('HolidayRequests'));
+        return view('all-requests', compact('HolidayRequests'));
     }
 
-    public function update(\App\HolidayRequests $HolidayRequests)
+
+
+    public function update()
     {
+        // dd(request()->all());
+
+        $data = request()->validate([
+            'email'        => 'required',
+            'phoneNumber'  => 'required',
+            'holidayStart' => 'required',
+            'holidayEnd'   => 'required',
+            'remark'       => 'required'
+        ]);
+
+        auth()->user()->HolidayRequests()->update([
+            'email' => $data['email'],
+            'phoneNumber' => $data['phoneNumber'],
+            'holidayStart' => $data['holidayStart'],
+            'holidayEnd' => $data['holidayEnd'],
+            'remark' => $data['remark'],
+        ]);
+   
+        return redirect('/all-requests');
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+    
+
+
+
+
+
+    // public function update(HolidayRequests $HolidayRequests, $id) 
+    // {
+    //     $holidayRequestsObject = HolidayRequests::find($id);
+    //     $holidayRequestsObject->update($this->validateObj());
+
+
+    // }
+
+    // public function validateObj()
+    // {
+    //     return request()->validate([
+    //         'firstName'    => 'required | min:2 | max:100',
+    //         'lastName'     => 'required | min:2 | max:100',
+    //         'email'        => 'required',
+    //         'phoneNumber'  => 'required',
+    //         'holidayStart' => 'required',
+    //         'holidayEnd'   => 'required',
+    //         'remark'       => 'required'
+    //     ]);
+    // }
+
+
+    // public function update()
+    // {
         // $request = \App\HolidayRequests::find($id);
         // $request->validate(
         //     [
@@ -80,33 +153,8 @@ class HolidayRequestsController extends Controller
         //         'remark'       => ''
         //     ]
         // )->update($HolidayRequests->all());
-
-
-
         // $this->authorize('update', $HolidayRequests->HolidayRequests);
 
-        $data = request()->validate([
-            'firstName'    => 'required | min:2 | max:100',
-            'lastName'     => 'required | min:2 | max:100',
-            'email'        => 'required',
-            'phoneNumber'  => 'required',
-            'holidayStart' => 'required',
-            'holidayEnd'   => 'required',
-            'remark'       => ''
-        ]);
-
-
-        auth()->user()->HolidayRequest->update([
-            'firstName' => $data['firstName'],
-            'lastName' => $data['lastName'],
-            'email' => $data['email'],
-            'phoneNumber' => $data['phoneNumber'],
-            'holidayStart' => $data['holidayStart'],
-            'holidayEnd' => $data['holidayEnd'],
-            'remark' => $data['remark'],
-        ]);
-
-        // return redirect('allRequests/{$HolidayRequests->id}');
-    }
+    // }
 
 }

@@ -15,22 +15,27 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+Auth::routes(['verify' => true]);
+
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes(['verify' => true]);
 
 
 // Route::get('/home', 'HomeController@index')->name('home');
 
+Route::post('/update/{id}', 'HolidayRequestsController@update');
 
-Route::post('/holidayRequest', 'HolidayRequestsController@store');
+
+Route::post('/holiday-request', 'HolidayRequestsController@store');
 
 Route::get('/home', 'HolidayRequestsController@index');
 
 Route::get('/edit/{id}', 'HolidayRequestsController@edit');
 
-Route::get('/allRequests', 'HolidayRequestsController@show');
+Route::get('/all-requests', 'HolidayRequestsController@show');
 
-Route::post('/allRequests', 'HolidayRequestsController@update');
+
+

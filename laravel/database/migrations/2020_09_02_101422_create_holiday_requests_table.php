@@ -19,10 +19,11 @@ class CreateHolidayRequestsTable extends Migration
             $table->string('firstName');
             $table->string('lastName');
             $table->string('email');
-            $table->integer('phoneNumber');
+            $table->string('phoneNumber');
             $table->date('holidayStart');
             $table->date('holidayEnd');
-            $table->text('remark');            
+            $table->text('remark');  
+            $table->integer('reportIsSent')->default(0);
             $table->timestamps();
 
 

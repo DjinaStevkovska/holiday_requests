@@ -8,24 +8,24 @@
                 <div class="card-header">{{ __('Holiday Request') }}</div>
 
                 <div class="card-body">
-                    <form action="/holidayRequest" enctype="multipart/form-data" method="POST">
+                    <form action="/holiday-request" enctype="multipart/form-data" method="POST">
                         @csrf
 
                         <div class="form-group">
                           <label for="exampleInputFirstName">First Name</label>
-                          <input type="text" class="form-control" name="firstName" placeholder="First Name">
+                        <input type="text" class="form-control" name="firstName" value="{{$user->name}}">
                         </div>
                         <div class="form-group">
-                          <label for="exampleInputLastName">Last Name</label>
-                          <input type="text" class="form-control" name="lastName" placeholder="Last Name">
+                            <label for="exampleInputLastName">Last Name</label>
+                            <input type="text" class="form-control" name="lastName">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail">Email address</label>
-                            <input type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+                            <input type="email" class="form-control" name="email" aria-describedby="emailHelp" value="{{$user->email}}">
                         </div>
                         <div class="form-group">
                             <label for="phone">Phone Number</label>
-                            <input type="tel" class="form-control" name="phoneNumber" placeholder="Phone Number">
+                            <input type="tel" class="form-control" name="phoneNumber" value="Phone Number">
                             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                         </div>
                         <label for="start">Start date:</label>

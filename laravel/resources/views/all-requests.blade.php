@@ -18,7 +18,9 @@
                             <h4 class="card-text mr-5">{{$item->firstName}}&nbsp;{{$item->lastName}}</h4>
                             <p class="ml-5">Request number: #{{ $item->id}}</p>
                             {{-- @can('update', $user->HolidayRequests) --}}
-                            <a class="float-right" href="/edit/{{ $item->id }}">Edit Request</a>
+                            @if (!$item->reportIsSent)
+                                <a class="float-right" href="/edit/{{ $item->id }}">Edit Request</a>
+                            @endif
                             {{-- @endcan --}}
                         </div>
                         <div class="card-body p-5">        
