@@ -15,7 +15,8 @@ class HolidayRequestsExportController extends Controller
     }
     public function export(Excel $excel)
     {
-        return $this->excel->download(new HolidayRequestsExport, 'holiday_requests_exports.xlsx');
+        return (new HolidayRequestsExport)->store('holiday_requests_exports.xlsx', 'local');
+        // return $this->excel->download(new HolidayRequestsExport, 'holiday_requests_exports.xlsx');
         // return Excel::download(new HolidayRequestsExport, 'holiday_requests_exports.xlsx');
     }
 }

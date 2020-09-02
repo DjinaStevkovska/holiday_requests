@@ -8,7 +8,6 @@ use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Illuminate\contracts\Support\Responsable;
 use App\HolidayRequests;
-// use App\Exports\WithHeadings;
 
 
 
