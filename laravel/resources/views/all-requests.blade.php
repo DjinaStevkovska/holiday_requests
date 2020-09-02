@@ -27,7 +27,7 @@
                             <div class="row">Email: {{$item->email}}</div>
                             <div class="row">Number: {{$item->phoneNumber}}</div>
                             <div class="row">Start Date: {{$item->holidayStart}}</div>
-                            <div class="row">End Date: {{$item->HolidayEnd}}</div>
+                            <div class="row">End Date: {{$item->holidayEnd}}</div>
                             <div class="row">Remark: {{$item->remark}}</div>
                         </div>
                     </div>

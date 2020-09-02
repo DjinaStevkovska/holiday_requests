@@ -13,6 +13,4 @@ class HolidayRequests extends Model
     {
         return $this->belongsTo(User::class);
     }
-
-
 }

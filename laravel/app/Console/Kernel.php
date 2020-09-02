@@ -25,11 +25,13 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+
+        
         //  send report
 
-        // $schedule->call(function () {
-        //     //
-        // })->weekly()->mondays()->at('13:00');
+        $schedule->call(function () {
+            
+        })->weekdays()->at('09:00');
 
     }
 

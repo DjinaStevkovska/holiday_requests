@@ -37,5 +37,6 @@ Route::get('/edit/{id}', 'HolidayRequestsController@edit');
 
 Route::get('/all-requests', 'HolidayRequestsController@show');
 
+Route::get('export', 'HolidayRequestsExportController@export');
 
 

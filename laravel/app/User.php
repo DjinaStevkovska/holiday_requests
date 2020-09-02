@@ -6,7 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\HolidayRequests;
-
+use Illuminate\Database\Capsule\Manager;
 
 class User extends Authenticatable
 {
@@ -44,6 +44,10 @@ class User extends Authenticatable
         return $this->hasMany(HolidayRequests::class)->orderBy('created_at', 'DESC');
     }
 
+    public function Managers()
+    {
+        return $this->hasMany(Managers::class)->orderBy('created_at', 'DESC');
+    }
     // public function Managers()
     // {
     //     return $this->hasMany(Managers::class);
