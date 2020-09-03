@@ -15,8 +15,9 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        // 
     ];
+    
 
     /**
      * Define the application's command schedule.
@@ -26,18 +27,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
-
-
-        // //  send report
-
-        // $schedule->call(function () {
-        //     DB::table('users')->delete();            
-        // })->everyMinute();
-        // // ->weekdays()->at('09:00');
-        
+    
         $schedule->command('command:SendEmailWithRequests')
-                  ->everyMinute();
+                  ->weekdays()->at('09:00');
+
 
     }
 

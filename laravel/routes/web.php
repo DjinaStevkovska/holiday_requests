@@ -1,7 +1,9 @@
 <?php
 
+use App\Mail\DailyReport;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+
 
 
 /*
@@ -23,11 +25,7 @@ Route::get('/', function () {
 });
 
 
-
-// Route::get('/home', 'HomeController@index')->name('home');
-
 Route::post('/update/{id}', 'HolidayRequestsController@update');
-
 
 Route::post('/holiday-request', 'HolidayRequestsController@store');
 
@@ -37,6 +35,6 @@ Route::get('/edit/{id}', 'HolidayRequestsController@edit');
 
 Route::get('/all-requests', 'HolidayRequestsController@show');
 
-Route::get('export', 'HolidayRequestsExportController@export');
+
 
 

@@ -23,25 +23,8 @@ class HolidayRequestsExport implements FromCollection, Responsable
     public function collection()
     {
         // dd(User::all());
-        return HolidayRequests::all();
+        // return HolidayRequests::all();
+        return HolidayRequests::all()->where('reportIsSent', '=', '0');
+
     }
-
-    // public function headings(): array
-    // {
-    //     return [
-    //         'id',
-    //         'user_id',
-    //         'first_name',
-    //         'last_name',
-    //         'email',
-    //         'phone_number',
-    //         'holiday_start',
-    //         'holiday_end',
-    //         'remark',
-    //         'reportIsSent',
-    //         'created_at',
-    //         'updated_at'
-    //     ];
-    // }
-
 }

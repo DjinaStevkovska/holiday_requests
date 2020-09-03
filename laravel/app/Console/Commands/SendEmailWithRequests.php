@@ -4,15 +4,23 @@ namespace App\Console\Commands;
 
 use App\HolidayRequests;
 use Illuminate\Console\Command;
+use Illuminate\Console\Scheduling\Schedule;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\DailyReport;
+use App\Exports\HolidayRequestsExport;
+
+
+
 
 class SendEmailWithRequests extends Command
 {
+    // public $details;
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'command:SendEmailWithRequests';
+    protected $signature = 'send:holiday-reports';
 
     /**
      * The console command description.
@@ -36,15 +44,29 @@ class SendEmailWithRequests extends Command
      *
      * @return int
      */
-    public function handle()
+    public function handle(Schedule $schedule)
     {
-        $sendEmail = 
+        $newRequests = HolidayRequests::where('reportIsSent', '=', '0')->get();
+
+        (new HolidayRequestsExport)->store('holiday_requests_exports.xlsx', 'local');
 
         $oldRequests = HolidayRequests::where('reportIsSent', '=', '0')
               ->update(['reportIsSent' => '1']);
-        // dd($oldRequests);
+
+        $details = [
+        'title' => 'Daily requests report',
+        'body'  => 'Daily reports for holiday requests from the employees for the last 24 hours.',
+        'message' => 'Thank you for using mailtrap'
+
+        ];
+
+        Mail::to('stefkovskadzina@gmail.com')->send(new DailyReport($details));
+        
+
 
         echo "The holidays request report has been exported to excel and sent to the managers mail. \n";
 
     }
+
+
 }
