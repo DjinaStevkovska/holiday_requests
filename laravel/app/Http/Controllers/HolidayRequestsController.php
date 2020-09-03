@@ -62,7 +62,7 @@ class HolidayRequestsController extends Controller
 
 
 
-    public function update()
+    public function update(HolidayRequests $holidayRequests, $id)
     {
         $data = request()->validate([
             'email'        => 'required',
@@ -72,7 +72,7 @@ class HolidayRequestsController extends Controller
             'remark'       => ''
         ]);
 
-        auth()->user()->HolidayRequests()->update([
+        auth()->user()->HolidayRequests()->find($id)->update([
             'email' => $data['email'],
             'phoneNumber' => $data['phoneNumber'],
             'holidayStart' => $data['holidayStart'],
