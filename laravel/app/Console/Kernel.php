@@ -27,10 +27,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-    
-        $schedule->command('command:SendEmailWithRequests')
-                  ->weekdays()->at('09:00');
-
+        $schedule->command('send:holiday-reports')
+                 ->weekdays()->at('09:00');
+        
+        //* * * * * cd C:\caphp\laravel\public && php artisan schedule:run >> /dev/null s>&1
 
     }
 

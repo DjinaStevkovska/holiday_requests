@@ -46,11 +46,7 @@ class User extends Authenticatable
 
     public function Managers()
     {
-        return $this->hasMany(Managers::class)->orderBy('created_at', 'DESC');
+        return $this->hasMany(Managers::class);
     }
-    // public function Managers()
-    // {
-    //     return $this->hasMany(Managers::class);
-    // }
 
 }

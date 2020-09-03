@@ -16,6 +16,7 @@ class CreateHolidayRequestsTable extends Migration
         Schema::create('holiday_requests', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('manager_id');
             $table->string('firstName');
             $table->string('lastName');
             $table->string('email');
@@ -25,6 +26,8 @@ class CreateHolidayRequestsTable extends Migration
             $table->text('remark');  
             $table->integer('reportIsSent')->default(0);
             $table->timestamps();
+
+            // $table->foreign('user_id')->references('id')->on('requests_users');
 
 
         });

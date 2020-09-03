@@ -60,13 +60,14 @@ class SendEmailWithRequests extends Command
 
         ];
 
-        Mail::to('stefkovskadzina@gmail.com')->send(new DailyReport($details));
-        
+        foreach ($newRequests as $request) {
+            $managerId = $request->manager_id;
+            $managerEmail = \App\Managers::find($managerId)->email;
+            // dd($managerEmail);
 
+            Mail::to($managerEmail)->send(new DailyReport($details));
 
-        echo "The holidays request report has been exported to excel and sent to the managers mail. \n";
+//echo "The holidays request report has been exported to excel and sent to the managers mail. \n";
 
     }
-
-
 }

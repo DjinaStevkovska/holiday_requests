@@ -16,7 +16,8 @@ class HolidayRequestsController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return view('/holiday-request', compact('user'));
+        $manager = \App\Managers::all();
+        return view('/holiday-request', compact('user', 'manager'));
     }
     public function store()
     {
@@ -27,6 +28,7 @@ class HolidayRequestsController extends Controller
             'phoneNumber'  => 'required',
             'holidayStart' => 'required',
             'holidayEnd'   => 'required',
+            'manager_id'   => 'required',
             'remark'       => ''
         ]);
 
@@ -37,34 +39,24 @@ class HolidayRequestsController extends Controller
             'phoneNumber'  => $data['phoneNumber'],
             'holidayStart' => $data['holidayStart'],
             'holidayEnd'   => $data['holidayEnd'],
+            'manager_id'   => $data['manager_id'],
             'remark'       => $data['remark']
         ]);
 
         return redirect('/all-requests');
-        // return(alert('request sent'));
-        // need to represent the request
-        // return redirect('/profile/' . auth()->user()->id);
-
     } 
 
     public function edit(\App\HolidayRequests $HolidayRequests, $id)
     {
-        // $this->authorize('update', $HolidayRequests->HolidayRequests);
         $HolidayRequests=\App\HolidayRequests::find($id);
-        // dd($HolidayRequests);
         return view('edit-request', compact('HolidayRequests', 'id'));
 
     }
 
     public function show(\App\HolidayRequests $HolidayRequests)
     {
-        // dd($HolidayRequests->HolidayRequests());
-        // dd($HolidayRequests->count());
+
         $HolidayRequests=\App\HolidayRequests::all();
-        // $user = App\Http\Controllers\Auth::user();
-        // dd($user);
-        // dd($user->HolidayRequests[0]->id);
-    //  need to make auth for can update
         return view('all-requests', compact('HolidayRequests'));
     }
 
@@ -72,8 +64,6 @@ class HolidayRequestsController extends Controller
 
     public function update()
     {
-        // dd(request()->all());
-
         $data = request()->validate([
             'email'        => 'required',
             'phoneNumber'  => 'required',
@@ -92,8 +82,5 @@ class HolidayRequestsController extends Controller
    
         return redirect('/all-requests');
     }
-
-
-
 
 }

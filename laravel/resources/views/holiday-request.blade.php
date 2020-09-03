@@ -42,6 +42,14 @@
                             min="2018-01-01" max="2018-12-31">
                             {{-- hardcoded min and mac --}}
 
+                        <div class="checkbox">
+                            <label for="managers">Choose manager:</label><br>
+                            @foreach ($manager as $item)
+                            <label><input name="manager_id" type="checkbox" value="{{ $item->id }}">{{ $item->name }}</label>
+                            @endforeach
+                        </div>
+                               
+
                         <div class="form-group">
                             <label for="remarks">Remarks:</label>
                             <textarea class="form-control" rows="5" name="remark"></textarea>
