@@ -69,7 +69,7 @@ class HolidayRequestsController extends Controller
             'phoneNumber'  => 'required',
             'holidayStart' => 'required',
             'holidayEnd'   => 'required',
-            'remark'       => 'required'
+            'remark'       => ''
         ]);
 
         auth()->user()->HolidayRequests()->update([

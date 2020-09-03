@@ -23,7 +23,7 @@ class CreateHolidayRequestsTable extends Migration
             $table->string('phoneNumber');
             $table->date('holidayStart');
             $table->date('holidayEnd');
-            $table->text('remark');  
+            $table->text('remark')->nullable();  
             $table->integer('reportIsSent')->default(0);
             $table->timestamps();
 
