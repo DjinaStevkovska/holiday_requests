@@ -48,6 +48,7 @@ class HolidayRequestsController extends Controller
 
     public function edit(\App\HolidayRequests $HolidayRequests, $id)
     {
+        $this->authorize('update', $HolidayRequests->HolidayRequests);
         $HolidayRequests=\App\HolidayRequests::find($id);
         return view('edit-request', compact('HolidayRequests', 'id'));
 
