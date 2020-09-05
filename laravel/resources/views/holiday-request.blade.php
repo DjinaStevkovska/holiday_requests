@@ -15,32 +15,31 @@
                           <label for="exampleInputFirstName">First Name</label>
                         <input type="text" class="form-control" name="firstName" value="{{$user->name}}">
                         </div>
+
                         <div class="form-group">
                             <label for="exampleInputLastName">Last Name</label>
                             <input type="text" class="form-control" name="lastName">
                         </div>
+
                         <div class="form-group">
                             <label for="exampleInputEmail">Email address</label>
                             <input type="email" class="form-control" name="email" aria-describedby="emailHelp" value="{{$user->email}}">
                         </div>
+                        
                         <div class="form-group">
                             <label for="phone">Phone Number</label>
                             <input type="tel" class="form-control" name="phoneNumber" value="Phone Number">
                             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                         </div>
-                        <label for="start">Start date:</label>
 
+                        <label for="start">Start date:</label>
                         <input type="date" id="start" name="holidayStart"
-                            value="2018-07-22"
-                            min="2018-01-01" max="2018-12-31">
-                            {{-- hardcoded min and mac --}}
+                            min="<?php echo date('Y-m-d'); ?>"
+                            value="<?php echo date('Y-m-d'); ?>">
 
                         <label for="start">End date:</label>
-
                         <input type="date" id="end" name="holidayEnd"
-                            value="2018-07-22"
-                            min="2018-01-01" max="2018-12-31">
-                            {{-- hardcoded min and mac --}}
+                            min="<?php echo date('Y-m-d'); ?>">
 
                         <div class="checkbox">
                             <label for="managers">Choose manager:</label><br>
