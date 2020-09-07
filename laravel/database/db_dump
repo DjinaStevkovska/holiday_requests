@@ -42,18 +42,21 @@ CREATE TABLE IF NOT EXISTS `holiday_requests` (
   `phoneNumber` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `holidayStart` date NOT NULL,
   `holidayEnd` date NOT NULL,
-  `remark` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remark` text COLLATE utf8mb4_unicode_ci,
   `reportIsSent` int(11) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table laravel_db.holiday_requests: ~0 rows (approximately)
+-- Dumping data for table laravel_db.holiday_requests: ~5 rows (approximately)
 /*!40000 ALTER TABLE `holiday_requests` DISABLE KEYS */;
 INSERT INTO `holiday_requests` (`id`, `user_id`, `manager_id`, `firstName`, `lastName`, `email`, `phoneNumber`, `holidayStart`, `holidayEnd`, `remark`, `reportIsSent`, `created_at`, `updated_at`) VALUES
-	(1, 1, 1, 'Djina', 'Stevkovska', 'stefkovskadzina@gmail.com', '+38976233322', '2018-07-22', '2018-07-22', 'a', 1, '2020-09-03 10:47:09', '2020-09-03 11:02:05'),
-	(2, 1, 2, 'Djina', 'Stevkovska', 'stefkovskadzina@gmail.com', '+38976233322', '2018-07-22', '2018-07-22', 'aaa', 1, '2020-09-03 10:47:49', '2020-09-03 11:02:05');
+	(1, 1, 1, 'Melyna', 'Weber', 'shawna90@example.net', '(497) 556-8030 x646', '2021-06-30', '2020-12-16', 'Dr.', 0, '2020-09-07 15:42:59', '2020-09-07 15:42:59'),
+	(2, 1, 2, 'Melyna', 'Weber', 'shawna90@example.net', '681.567.1991 x747', '2021-01-25', '2021-01-07', 'Prof.', 0, '2020-09-07 15:42:59', '2020-09-07 15:42:59'),
+	(3, 1, 3, 'Melyna', 'Weber', 'shawna90@example.net', '442-512-8808', '2021-07-28', '2021-01-04', 'Prof.', 0, '2020-09-07 15:42:59', '2020-09-07 15:42:59'),
+	(4, 1, 4, 'Melyna', 'Weber', 'shawna90@example.net', '+1-346-808-0763', '2021-04-23', '2020-12-02', 'Mr.', 0, '2020-09-07 15:42:59', '2020-09-07 15:42:59'),
+	(5, 1, 5, 'Melyna', 'Weber', 'shawna90@example.net', '560.892.3204 x3950', '2020-11-18', '2021-05-26', 'Prof.', 0, '2020-09-07 15:42:59', '2020-09-07 15:42:59');
 /*!40000 ALTER TABLE `holiday_requests` ENABLE KEYS */;
 
 -- Dumping structure for table laravel_db.managers
@@ -64,13 +67,16 @@ CREATE TABLE IF NOT EXISTS `managers` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table laravel_db.managers: ~0 rows (approximately)
+-- Dumping data for table laravel_db.managers: ~5 rows (approximately)
 /*!40000 ALTER TABLE `managers` DISABLE KEYS */;
 INSERT INTO `managers` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES
-	(1, 'Maritn', 'martin@gmail.com', NULL, NULL),
-	(2, 'Mia', 'djina@gmaill.com', NULL, NULL);
+	(1, 'Katelin Ankunding', 'mueller.trevor@example.org', '2020-09-07 15:42:59', '2020-09-07 15:42:59'),
+	(2, 'Jaden Lang', 'awolf@example.net', '2020-09-07 15:42:59', '2020-09-07 15:42:59'),
+	(3, 'Prof. Beverly Grant', 'tschmitt@example.org', '2020-09-07 15:42:59', '2020-09-07 15:42:59'),
+	(4, 'Vanessa Pacocha I', 'mckenzie.arlie@example.com', '2020-09-07 15:42:59', '2020-09-07 15:42:59'),
+	(5, 'Hayden Boehm', 'ngibson@example.com', '2020-09-07 15:42:59', '2020-09-07 15:42:59');
 /*!40000 ALTER TABLE `managers` ENABLE KEYS */;
 
 -- Dumping structure for table laravel_db.migrations
@@ -79,17 +85,16 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table laravel_db.migrations: ~6 rows (approximately)
+-- Dumping data for table laravel_db.migrations: ~5 rows (approximately)
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 	(1, '2014_10_12_000000_create_users_table', 1),
 	(2, '2014_10_12_100000_create_password_resets_table', 1),
 	(3, '2019_08_19_000000_create_failed_jobs_table', 1),
 	(4, '2020_09_02_101422_create_holiday_requests_table', 1),
-	(5, '2020_09_02_110317_create_requests_users_table', 1),
-	(6, '2020_09_03_095840_create_managers_table', 1);
+	(5, '2020_09_03_095840_create_managers_table', 1);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 
 -- Dumping structure for table laravel_db.password_resets
@@ -103,24 +108,6 @@ CREATE TABLE IF NOT EXISTS `password_resets` (
 -- Dumping data for table laravel_db.password_resets: ~0 rows (approximately)
 /*!40000 ALTER TABLE `password_resets` DISABLE KEYS */;
 /*!40000 ALTER TABLE `password_resets` ENABLE KEYS */;
-
--- Dumping structure for table laravel_db.requests_users
-CREATE TABLE IF NOT EXISTS `requests_users` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `holiday_request_id` bigint(20) unsigned NOT NULL,
-  `user_id` bigint(20) unsigned NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `requests_users_user_id_foreign` (`user_id`),
-  KEY `requests_users_holiday_request_id_foreign` (`holiday_request_id`),
-  CONSTRAINT `requests_users_holiday_request_id_foreign` FOREIGN KEY (`holiday_request_id`) REFERENCES `requests_users` (`id`),
-  CONSTRAINT `requests_users_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `requests_users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- Dumping data for table laravel_db.requests_users: ~0 rows (approximately)
-/*!40000 ALTER TABLE `requests_users` DISABLE KEYS */;
-/*!40000 ALTER TABLE `requests_users` ENABLE KEYS */;
 
 -- Dumping structure for table laravel_db.users
 CREATE TABLE IF NOT EXISTS `users` (
@@ -139,7 +126,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Dumping data for table laravel_db.users: ~1 rows (approximately)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-	(1, 'Djina Stevkovska', 'stefkovskadzina@gmail.com', NULL, '$2y$10$y8o.EYo3TnRInZFZ3OEWPuuvAXTF4fPigrHO5w.wPfUCrlFhOO8dW', NULL, '2020-09-03 10:43:24', '2020-09-03 10:43:24');
+	(1, 'Melyna Weber', 'shawna90@example.net', '2020-09-07 15:42:58', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'fS50I3GWNO', '2020-09-07 15:42:59', '2020-09-07 15:42:59');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
