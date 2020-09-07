@@ -4,8 +4,11 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="card">
-            <div class="card-header">
+            <div class="card-header d-flex justify-content-between">
                 <h1>{{ __('All Holiday Requests') }}</h1>
+                <a href="/home" class="nav-link">
+                    <button class="btn btn-success">Make New Request</button>
+                </a>
             </div>
 
             @if(!$HolidayRequests) 
@@ -42,7 +45,7 @@
                             </td>
                             @else
                             <td class="table-danger">
-                                <span>Request sent</span>         
+                                <span class="text-danger"><strong>Request sent</strong></span>         
                             </td>                       
                             @endif
                         

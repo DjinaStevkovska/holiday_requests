@@ -5,7 +5,12 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header"><h1>{{ __('Make a Holiday Request') }}</h1></div>
+                <div class="card-header d-flex justify-content-between">
+                    <h1>{{ __('Make a Holiday Request') }}</h1>
+                    <a href="/all-requests" class="nav-link">
+                        <button class="btn btn-success">View All Requests</button>
+                    </a>
+                </div>
 
                 <div class="card-body">
                     <form action="/holiday-request" enctype="multipart/form-data" method="POST">
