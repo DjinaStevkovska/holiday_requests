@@ -7,44 +7,95 @@
 
 
             <div class="card m-4">
-                <div class="card-header d-flex">
-                    <h4 class="card-text mr-5">{{$HolidayRequests->firstName}}&nbsp;{{$HolidayRequests->lastName}}</h4>
-                    <p class="ml-3 mr-3">Request number: #{{ $id }}</p>
+                <div class="card-header d-flex justify-content-between">
+                    <h1 class="card-text">{{$HolidayRequests->firstName}}&nbsp;{{$HolidayRequests->lastName}}</h1>
+                    <p>Request number: #{{ $id }}</p>
 
                 </div>
 
                 <form action="/update/{{$id}}" method="POST">
                     @csrf
 
-                    @if($errors->any())
+                    {{-- @if($errors->any())
                         {{ implode('', $errors->all('<div>:message</div>')) }}
-                    @endif
+                    @endif --}}
                    
-                    <div class="card-body p-5 mx-auto">        
-                        <div class="row m-5">
-                            <h4 style="width:150px;">Email:</h4> 
-                            <input name="email" value="{{$HolidayRequests->email}}">
+                    <div class="card-body"> 
+                        <div class="form-group m-3">
+                            <label  for="email" style="width:150px;"><strong>Email:</strong></label> 
+                            <input type="text" 
+                                class="form-control @error('Email') is-invalid @enderror"
+                                name="email" 
+                                value="{{$HolidayRequests->email}}">
+                                
+                                @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror 
                         </div>
-                        <div class="row m-5 d-flex">
-                            <h4 style="width:150px;">Phone Number:</h4> 
-                            <input name="phoneNumber" value="{{$HolidayRequests->phoneNumber}}">        
+
+                        <div class="form-group m-3">
+                            <label  for="phoneNumber" style="width:150px;"><strong>Phone Number:</strong></label> 
+                            <input type="text" 
+                                class="form-control @error('phoneNumber') is-invalid @enderror"
+                                name="phoneNumber" 
+                                value="{{$HolidayRequests->phoneNumber}}">        
+
+                                @error('phoneNumber')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror 
                         </div>
-                        <div class="row m-5 d-flex">
-                            <h4 style="width:150px;">Start Date:</h4>
-                            <input name="holidayStart" value="{{$HolidayRequests->holidayStart}}">     
+
+                        <div class="form-group m-3">
+                            <label  for="startDate" style="width:150px;"><strong>Start Date:</strong></label>
+                            <input type="text" 
+                                class="form-control @error('startDate') is-invalid @enderror"
+                                name="holidayStart" 
+                                value="{{$HolidayRequests->holidayStart}}">     
+                                
+                                @error('startDate')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror 
                         </div>
-                        <div class="row m-5 d-flex">
-                            <h4 style="width:150px;">End Date:</h4> 
-                            <input name="holidayEnd" value="{{$HolidayRequests->holidayEnd}}">     
+
+                        <div class="form-group m-3">
+                            <label  for="endDate" style="width:150px;"><strong>End Date:</strong></label> 
+                            <input type="text" 
+                                class="form-control @error('endDate') is-invalid @enderror"
+                                name="holidayEnd" 
+                                value="{{$HolidayRequests->holidayEnd}}">     
+
+                                @error('endDate')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror 
                         </div>
-                        <div class="row m-5 d-flex">
-                            <h4 style="width:150px;">Remark:</h4> 
-                            <input name="remark" value="{{$HolidayRequests->remark}}">   
+
+                        <div class="form-group m-3">
+                            <label  for="remark" style="width:150px;"><strong>Remark:</strong></label> 
+                            <input type="text" 
+                                class="form-control @error('remark') is-invalid @enderror"
+                                name="remark" 
+                                value="{{$HolidayRequests->remark}}">   
+                    
+                                @error('remark')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror 
                         </div>
+
                     </div>
 
-                    <button type="submit" class="btn btn-primary mx-auto float-right m-3">Update</button>
-
+                    <div class="form-group m-3 d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary w-50">Update</button>
+                    </div>
                 </form>
             </div>
 

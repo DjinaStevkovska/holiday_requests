@@ -3,40 +3,53 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('All Holiday Request') }}</div>
-                    <div class="p-2 m-2">
-                        <h2>Here will be displayed your requests!</h2>
-                    </div>
-                    
-                    
-                    @foreach ($HolidayRequests as $item)
-
-                    <div class="card m-4">
-                        <div class="card-header d-flex">
-                            <h4 class="card-text mr-5">{{$item->firstName}}&nbsp;{{$item->lastName}}</h4>
-                            <p class="ml-5">Request number: #{{ $item->id}}</p>
-                            {{-- @can('update', $user->HolidayRequests) --}}
-                            @if (!$item->reportIsSent)
-                                <a class="float-right" href="/edit/{{ $item->id }}">Edit Request</a>
-                            @endif
-                            {{-- @endcan --}}
-                        </div>
-                        <div class="card-body p-5">        
-                            <div class="row">Email: {{$item->email}}</div>
-                            <div class="row">Number: {{$item->phoneNumber}}</div>
-                            <div class="row">Start Date: {{$item->holidayStart}}</div>
-                            <div class="row">End Date: {{$item->holidayEnd}}</div>
-                            <div class="row">Remark: {{$item->remark}}</div>
-                        </div>
-                    </div>
-
-                    @endforeach
-                <div class="card-body">
-
-                </div>
+        <div class="card">
+            <div class="card-header">
+                <h1>{{ __('All Holiday Requests') }}</h1>
             </div>
+
+            @if(!$HolidayRequests) 
+                <div class="p-2 m-2">
+                    <h2>Here will be displayed all your requests!</h2>
+                </div>
+            @endif
+                        
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                    <th scope="col">Request no:</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Number</th>
+                    <th scope="col">Start Date</th>
+                    <th scope="col">End Date</th>
+                    <th scope="col">Remark</th>
+                    </tr>
+                </thead>  
+
+                <tbody>
+                    @foreach ($HolidayRequests as $item)
+                    <tr>
+                        <th scope="row">#{{ $item->id}}</th>
+                        <td>{{$item->email}}</td>
+                        <td>{{$item->phoneNumber}}</td>
+                        <td>{{$item->holidayStart}}</td>
+                        <td>{{$item->holidayEnd}}</td>
+                        <td>{{$item->remark}}</td>
+                        
+                            @if (!$item->reportIsSent)
+                            <td class="table-primary">
+                                <a class="float-right" href="/edit/{{ $item->id }}">Edit Request</a>
+                            </td>
+                            @else
+                            <td class="table-danger">
+                                <span>Request sent</span>         
+                            </td>                       
+                            @endif
+                        
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
