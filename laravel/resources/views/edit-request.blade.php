@@ -5,7 +5,6 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
 
-
             <div class="card m-4">
                 <div class="card-header d-flex justify-content-between">
                     <h1 class="card-text">{{$HolidayRequests->firstName}}&nbsp;{{$HolidayRequests->lastName}}</h1>
@@ -15,11 +14,7 @@
 
                 <form action="/update/{{$id}}" method="POST">
                     @csrf
-
-                    {{-- @if($errors->any())
-                        {{ implode('', $errors->all('<div>:message</div>')) }}
-                    @endif --}}
-                   
+                 
                     <div class="card-body"> 
                         <div class="form-group m-3">
                             <label  for="email" style="width:150px;"><strong>Email:</strong></label> 
@@ -50,27 +45,26 @@
                         </div>
 
                         <div class="form-group m-3">
-                            <label  for="startDate" style="width:150px;"><strong>Start Date:</strong></label>
-                            <input type="text" 
-                                class="form-control @error('startDate') is-invalid @enderror"
+                            <label  for="holidayStart"><strong>Start Date:</strong></label>
+                            <input type="date" 
                                 name="holidayStart" 
-                                value="{{$HolidayRequests->holidayStart}}">     
+                                min="<?php echo date('Y-m-d'); ?>"
+                                value="{{$HolidayRequests->holidayStart}}"
+                                class="form-control @error('holidayStart') is-invalid @enderror">     
                                 
-                                @error('startDate')
+                                @error('holidayStart')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                                 @enderror 
-                        </div>
 
-                        <div class="form-group m-3">
-                            <label  for="endDate" style="width:150px;"><strong>End Date:</strong></label> 
-                            <input type="text" 
-                                class="form-control @error('endDate') is-invalid @enderror"
+                            <label  for="holidayEnd"><strong>End Date:</strong></label> 
+                            <input type="date" 
                                 name="holidayEnd" 
-                                value="{{$HolidayRequests->holidayEnd}}">     
+                                value="{{$HolidayRequests->holidayEnd}}"
+                                class="form-control @error('holidayEnd') is-invalid @enderror">     
 
-                                @error('endDate')
+                                @error('holidayEnd')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -96,13 +90,14 @@
                     <div class="form-group m-3 d-flex justify-content-center">
                         <button type="submit" class="btn btn-primary w-50">Update</button>
                     </div>
+
+                    {{-- @if($errors->any())
+                    {{ implode('', $errors->all(':message')) }}
+                    @endif --}}
+                    
                 </form>
             </div>
-
-
-        <div class="card-body">
-                    
-
+        </div>
     </div>
 </div>
 @endsection
