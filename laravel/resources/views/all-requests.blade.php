@@ -11,12 +11,12 @@
                 </a>
             </div>
 
-            @if(!$HolidayRequests) 
+            @if(sizeof($HolidayRequests) == 0) 
                 <div class="p-2 m-2">
                     <h2>Here will be displayed all your requests!</h2>
                 </div>
-            @endif
-                        
+            @else
+
             <table class="table table-striped table-bordered">
                 <thead>
                     <tr>
@@ -53,6 +53,9 @@
                     @endforeach
                 </tbody>
             </table>
+
+            @endif 
+
         </div>
     </div>
 </div>
