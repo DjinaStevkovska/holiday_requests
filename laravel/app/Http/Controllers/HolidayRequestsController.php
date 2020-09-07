@@ -59,7 +59,7 @@ class HolidayRequestsController extends Controller
     public function show(\App\HolidayRequests $HolidayRequests)
     {
 
-        $HolidayRequests=auth()->user()->HolidayRequests);
+        $HolidayRequests=auth()->user()->HolidayRequests;
         return view('all-requests', compact('HolidayRequests'));
     }
 
